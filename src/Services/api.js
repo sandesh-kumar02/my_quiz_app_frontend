@@ -15,9 +15,11 @@ API.interceptors.request.use((req) => {
 
 export const register = async (userData) => {
   try {
+    console.log("👉 Sending data to backend:", userData);
     return await API.post("/auth/register", userData);
   } catch (error) {
     console.log("Frontend Backend Connection Error:", error);
+    throw error; // 🔥 IMPORTANT
   }
 };
 

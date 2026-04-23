@@ -8,7 +8,7 @@ function Register() {
     username: "",
     email: "",
     password: "",
-    role: "",
+    role: "user",
   });
 
   const [loading, setLoading] = useState(false);
