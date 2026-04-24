@@ -24,6 +24,7 @@ function Register() {
 
     try {
       await register(formData);
+      console.log(formData)
       toast.success("User registered successfully");
       navigate("/login");
     } catch (error) {
