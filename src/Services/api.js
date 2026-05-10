@@ -2,14 +2,17 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  // withCredentials: true,
 });
 
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
-  if (token) {
-    req.headers.Authorization = `Bearer ${token}`;
-  }
+
+  console.log("TOKEN:", token);
+
+  req.headers.Authorization = `Bearer ${token}`;
+
+  console.log("HEADERS:", req.headers);
+
   return req;
 });
 
@@ -88,11 +91,36 @@ export const Alluser = async () => {
   }
 };
 
+// export const DeleteUser = async (id) => {
+//   try {
+//     const res = await API.delete(`/auth/users/${id}`);
+//     console.log("Delete response:", res);
+//     return res;
+//   } catch (error) {
+//     console.log("Delete API Error:", error.response?.data || error.message);
+//     throw error;
+//   }
+// };
+
 export const DeleteUser = async (id) => {
   try {
-    await API.delete(`/auth/users/${id}`);
+    console.log("DELETE FUNCTION START");
+
+    const url = `/auth/users/${id}`;
+
+    console.log("URL:", url);
+
+    const res = await API.delete(url);
+
+    console.log("Delete response:", res);
+
+    return res;
   } catch (error) {
-    console.log(error);
+    console.log("FULL DELETE ERROR:", error);
+
+    console.log("Error response:", error.response);
+
+    throw error;
   }
 };
 

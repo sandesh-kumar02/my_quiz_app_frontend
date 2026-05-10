@@ -16,6 +16,7 @@ function UserPage() {
 
   const handleDelete = async (id) => {
     try {
+      console.log("Clicked delete:", id); // 👈 ADD THIS
       await DeleteUser(id);
 
       setUser((prevUser) =>
